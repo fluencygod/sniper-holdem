@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" fill="none">
+  <defs>
+    <linearGradient id="trace" x1="0" y1="0" x2="1200" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#AF7BFF" stop-opacity="0.62"/>
+      <stop offset="1" stop-color="#75DFFF" stop-opacity="0.45"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g stroke="url(#trace)" stroke-width="1.6" stroke-linecap="round" filter="url(#glow)">
+    <path d="M32 112H250L320 182H540"/>
+    <path d="M32 174H280L350 244H620"/>
+    <path d="M32 234H240L310 304H500"/>
+    <path d="M32 298H220L288 368H520"/>
+    <path d="M1168 112H950L880 182H660"/>
+    <path d="M1168 174H920L850 244H580"/>
+    <path d="M1168 234H960L890 304H700"/>
+    <path d="M1168 298H980L912 368H680"/>
+    <path d="M350 78V164"/>
+    <path d="M430 76V180"/>
+    <path d="M520 66V190"/>
+    <path d="M682 66V190"/>
+    <path d="M770 76V180"/>
+    <path d="M850 78V164"/>
+  </g>
+  <g fill="#A87DFF" fill-opacity="0.76">
+    <circle cx="540" cy="182" r="3"/>
+    <circle cx="620" cy="244" r="3"/>
+    <circle cx="500" cy="304" r="3"/>
+    <circle cx="660" cy="182" r="3"/>
+    <circle cx="580" cy="244" r="3"/>
+    <circle cx="700" cy="304" r="3"/>
+  </g>
+</svg>
