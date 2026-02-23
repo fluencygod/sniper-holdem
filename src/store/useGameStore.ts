@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { GameState, Player, Card, ActionType, GamePhase } from '@/types/game';
+import { GameState, Player, ActionType } from '@/types/game';
 import { Deck } from '@/lib/deck';
-import { Judge, HandResult } from '@/lib/judge';
+import { Judge } from '@/lib/judge';
 
 interface WinnersInfo {
     winners: Player[];
@@ -86,7 +86,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
         const state = get();
         if (state.currentTurnPlayerId !== playerId || state.phase === 'SHOWDOWN' || state.phase === 'FINISHED') return;
 
-        let { players, pot, highestBet, lastAggressorIndex, snipedTargets } = state;
+        const { players } = state;
+        let { pot, highestBet, lastAggressorIndex, snipedTargets } = state;
         const playerIndex = players.findIndex(p => p.id === playerId);
         if (playerIndex === -1) return;
 
@@ -151,7 +152,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     },
 
     nextTurn: () => {
-        let { actionIndex, lastAggressorIndex, players, phase, startingPlayerIndex } = get();
+        const { actionIndex, lastAggressorIndex, players, phase, startingPlayerIndex } = get();
 
         // 타겟 페이즈가 저격 페이즈 일 경우 1바퀴 돌면 즉시 쇼다운
         if (phase === 'SNIPING') {
@@ -233,7 +234,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
             set({
                 phase: 'ANTE',
-                deck: (deck as any).cards,
+                deck: deck.toArray(),
                 communityCards: [],
                 players: playingPlayers,
                 pot: currentPot,
@@ -246,13 +247,13 @@ export const useGameStore = create<GameStore>((set, get) => ({
         } else if (state.phase === 'ANTE') {
 
             const deck = new Deck();
-            (deck as any).cards = [...state.deck];
+            deck.setCards(state.deck);
             const newCommunityCards = deck.draw(2);
 
             set({
                 phase: 'ROUND_1',
                 communityCards: newCommunityCards,
-                deck: (deck as any).cards,
+                deck: deck.toArray(),
                 highestBet: 0,
                 actionIndex: state.startingPlayerIndex,
                 lastAggressorIndex: state.startingPlayerIndex,
@@ -262,7 +263,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
         } else if (state.phase === 'ROUND_1') {
             // ROUND_2: 공용카드 2장 더 (총4장), 베팅 초기화
             const deck = new Deck();
-            (deck as any).cards = [...state.deck];
+            deck.setCards(state.deck);
             const newCommunityCards = deck.draw(2);
 
             const resetPlayers = state.players.map(p => ({
@@ -279,7 +280,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
             set({
                 phase: 'ROUND_2',
                 communityCards: [...state.communityCards, ...newCommunityCards],
-                deck: (deck as any).cards,
+                deck: deck.toArray(),
                 players: resetPlayers,
                 highestBet: 0,
                 actionIndex: startIdx,
@@ -349,7 +350,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
         // 팟 분배 (베팅 똑같이 나누고 남는 칩은 턴 앞선 순서대로 1개씩)
         const baseSplit = Math.floor(pot / winners.length);
-        let remainder = pot % winners.length;
+        const remainder = pot % winners.length;
 
         // winners 리스트를 "선(startingPlayerIndex)에서 가까운 순"으로 정렬 (나머지 칩 분배용)
         const sortedWinners = [...winners].sort((a, b) => {

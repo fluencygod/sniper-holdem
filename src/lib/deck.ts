@@ -40,6 +40,16 @@ export class Deck {
         return this.cards.splice(0, count);
     }
 
+    // 덱 상태 직렬화
+    public toArray(): Card[] {
+        return [...this.cards];
+    }
+
+    // 저장된 덱 상태 복원
+    public setCards(cards: Card[]): void {
+        this.cards = [...cards];
+    }
+
     // 남은 카드 개수 확인
     public get remainingCards(): number {
         return this.cards.length;

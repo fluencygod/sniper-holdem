@@ -1,4 +1,4 @@
-import { Card, Rank } from '@/types/game';
+import { Card } from '@/types/game';
 
 export interface HandResult {
     name: string;          // e.g., "8 스트레이트", "7 투페어"

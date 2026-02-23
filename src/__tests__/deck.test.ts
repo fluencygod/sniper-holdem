@@ -22,9 +22,9 @@ describe('Deck', () => {
     });
 
     it('should shuffle cards', () => {
-        const unswapped = [...(deck as any).cards.map((c: any) => c.id)];
+        const unswapped = deck.toArray().map(card => card.id);
         deck.shuffle();
-        const swapped = [...(deck as any).cards.map((c: any) => c.id)];
+        const swapped = deck.toArray().map(card => card.id);
         expect(unswapped).not.toEqual(swapped);
     });
 });

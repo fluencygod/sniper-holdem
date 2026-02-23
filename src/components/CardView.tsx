@@ -8,22 +8,22 @@ interface Props {
 
 export default function CardView({ card, hidden = false, size = 'md' }: Props) {
     const sizeClasses = {
-        sm: "w-[36px] h-[50px] min-w-[36px] min-h-[50px] sm:w-[40px] sm:h-[56px] sm:min-w-[40px] sm:min-h-[56px] md:w-[46px] md:h-[64px] md:min-w-[46px] md:min-h-[64px]",
-        md: "w-[48px] h-[68px] min-w-[48px] min-h-[68px] sm:w-[56px] sm:h-[78px] sm:min-w-[56px] sm:min-h-[78px] md:w-[64px] md:h-[90px] md:min-w-[64px] md:min-h-[90px]",
-        lg: "w-[58px] h-[82px] min-w-[58px] min-h-[82px] sm:w-[66px] sm:h-[94px] sm:min-w-[66px] sm:min-h-[94px] md:w-[74px] md:h-[110px] md:min-w-[74px] md:min-h-[110px]",
+        sm: "w-[32px] h-[46px] min-w-[32px] min-h-[46px] sm:w-[36px] sm:h-[50px] sm:min-w-[36px] sm:min-h-[50px] md:w-[40px] md:h-[56px] md:min-w-[40px] md:min-h-[56px]",
+        md: "w-[44px] h-[62px] min-w-[44px] min-h-[62px] sm:w-[50px] sm:h-[70px] sm:min-w-[50px] sm:min-h-[70px] md:w-[58px] md:h-[82px] md:min-w-[58px] md:min-h-[82px]",
+        lg: "w-[52px] h-[74px] min-w-[52px] min-h-[74px] sm:w-[60px] sm:h-[86px] sm:min-w-[60px] sm:min-h-[86px] md:w-[68px] md:h-[100px] md:min-w-[68px] md:min-h-[100px]",
     }[size];
 
     if (hidden || !card) {
         return (
-            <div className={`${sizeClasses} rounded-[14px] outline-none border border-cyan-300/45 bg-gradient-to-br from-[#1A1B49] via-[#2E1F7A] to-[#211856] shadow-[0_0_14px_rgba(96,220,255,0.35)] flex items-center justify-center relative overflow-hidden`}>
-                <div className="absolute inset-1 rounded-[12px] border border-cyan-300/35"></div>
-                <div className="absolute inset-2 rounded-[10px] border border-indigo-300/30 bg-[linear-gradient(140deg,rgba(140,120,255,0.28),rgba(72,42,190,0.24))]"></div>
-                <div className="absolute inset-3 rounded-[9px] bg-[radial-gradient(circle_at_24%_26%,rgba(168,126,255,0.45),transparent_58%)]"></div>
-                <div className="absolute inset-0 opacity-55 bg-[linear-gradient(90deg,rgba(131,123,255,0.22)_1px,transparent_1px),linear-gradient(0deg,rgba(131,123,255,0.22)_1px,transparent_1px)] bg-[size:9px_9px]"></div>
-                <div className="relative z-10 h-5 w-5 sm:h-6 sm:w-6 rounded-full border border-cyan-200/70 shadow-[0_0_10px_rgba(125,226,255,0.4)]">
+            <div className={`${sizeClasses} rounded-[13px] outline-none border border-cyan-300/42 bg-gradient-to-br from-[#1A1B49] via-[#2E1F7A] to-[#211856] shadow-[0_0_10px_rgba(96,220,255,0.3)] flex items-center justify-center relative overflow-hidden`}>
+                <div className="absolute inset-1 rounded-[11px] border border-cyan-300/30"></div>
+                <div className="absolute inset-2 rounded-[9px] border border-indigo-300/28 bg-[linear-gradient(140deg,rgba(140,120,255,0.24),rgba(72,42,190,0.22))]"></div>
+                <div className="absolute inset-3 rounded-[8px] bg-[radial-gradient(circle_at_24%_26%,rgba(168,126,255,0.42),transparent_58%)]"></div>
+                <div className="absolute inset-0 opacity-50 bg-[linear-gradient(90deg,rgba(131,123,255,0.2)_1px,transparent_1px),linear-gradient(0deg,rgba(131,123,255,0.2)_1px,transparent_1px)] bg-[size:9px_9px]"></div>
+                <div className="relative z-10 h-[18px] w-[18px] sm:h-5 sm:w-5 rounded-full border border-cyan-200/65 shadow-[0_0_8px_rgba(125,226,255,0.34)]">
                     <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-cyan-200/70"></span>
                     <span className="absolute top-1/2 left-0 h-px w-full -translate-y-1/2 bg-cyan-200/70"></span>
-                    <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/90"></span>
+                    <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/88"></span>
                 </div>
             </div>
         );
